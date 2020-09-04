@@ -1,0 +1,9 @@
+<div class="modal__overlay"></div>
+<div class="modal__content content">
+    <div class="content__header">
+        <button (click)="close($event)">X</button>
+    </div>
+    <div class="content__body">
+        <ng-content></ng-content>
+    </div>
+</div>

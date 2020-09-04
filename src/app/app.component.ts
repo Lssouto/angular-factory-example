@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ViewContainerRef } from '@angular/core';
+import { FactoryService } from 'src/core/factory.service';
+import { ModalExampleComponent } from 'src/modules/modal-example/modal-example.component';
+import { ModalFactory } from 'src/core/modal-factory.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-modal';
+  @ViewChild('modalContainer',  { read: ViewContainerRef })
+  private _modalContainer;
+
+  public openModal(event: Event) {
+    const component = this._modalFactory.createModal(this._modalContainer, ModalExampleComponent);
+    console.log(component);
+  }
+
+  constructor(
+    private _modalFactory: ModalFactory
+  ) {}
 }
